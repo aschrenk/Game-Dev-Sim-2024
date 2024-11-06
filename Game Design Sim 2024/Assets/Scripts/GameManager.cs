@@ -5,9 +5,16 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    private float currentTime;
+    float currentTime;
     public int intTime;
-    public int issueChance;
+    
+    int issueChance;
+    int lastIssue;
+    int issuesActive;
+
+    public TMP_Text progDebug;
+    int progress;
+    int tasksDone;
 
     public TMP_Text timeBar;
     string minutes;
@@ -16,12 +23,22 @@ public class GameManager : MonoBehaviour
     string amPM;
 
     public GameObject[] notifs;
+    public AudioSource audioSource;
+    public AudioClip[] notifSounds;
+
+    public GameObject winScreen;
+    public GameObject loseScreen;
 
     void Start()
     {
-        //initializes time values
+        //initializes values
         currentTime = 0f;
         issueChance = 0;
+        lastIssue = 0;
+        issuesActive = 0;
+        progress = 0;
+        tasksDone = 0;
+
         minutes = "00";
         hour = "12";
         day = "7";
@@ -36,19 +53,28 @@ public class GameManager : MonoBehaviour
         //time counting
         currentTime += Time.deltaTime;
         intTime = Mathf.RoundToInt(currentTime);
+
+        if (Input.anyKeyDown && issuesActive == 0)
+        {
+            WorkProgress();
+        }
     }
 
     void EverySecond()
     {
+        if (intTime >= 217)
+        {
+            Time.timeScale = 0;
+            loseScreen.SetActive(true);
+        }
+        
         TimeReadout();
         EventChance();
     }
 
     //does the math for the timer and prints it
     void TimeReadout()
-    {
-        Debug.Log("Time check " + intTime);
-        
+    {        
         int time = intTime * 1200;
         
         int mins = (time / 60) % 60;
@@ -98,12 +124,21 @@ public class GameManager : MonoBehaviour
 
     void EventChance()
     {
-        issueChance += intTime;
+        issueChance += intTime - lastIssue;
 
-        int happen = issueChance + Random.Range(1, 6);
-        if (happen >= 6)
+        int happen = issueChance + Random.Range(1, 15);
+        if (happen >= 20)
         {
-            notifs[Random.Range(0, 4)].SetActive(true);
+            int index = Random.Range(0, 4);
+            if (!notifs[index].gameObject.activeSelf)
+            {
+                notifs[index].SetActive(true);
+                audioSource.clip = notifSounds[index];
+                audioSource.Play();
+                issuesActive++;
+            }
+
+            lastIssue = intTime;
             issueChance = 0;
         }
     }
@@ -111,5 +146,25 @@ public class GameManager : MonoBehaviour
     public void RemoveNotif(int index)
     {
         notifs[index].SetActive(false);
+        issuesActive--;
+    }
+
+    void WorkProgress()
+    {
+        progress++;
+        if (progress >= 100)
+        {
+            Debug.Log("Task complete!");
+            tasksDone++;
+            if (tasksDone >= 15)
+            {
+                Time.timeScale = 0;
+                winScreen.SetActive(true);
+            }
+
+            progress = 0;
+        }
+        
+        progDebug.text = progress.ToString();
     }
 }
