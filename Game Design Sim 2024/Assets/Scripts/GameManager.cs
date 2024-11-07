@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class GameManager : MonoBehaviour
     public TMP_Text progDebug;
     int progress;
     int tasksDone;
+
+    public Toggle[] tasksToggles;
+    public TMP_Text[] tasksTexts;
+    public string[] tasksStrings;
 
     public TMP_Text timeBar;
     string minutes;
@@ -43,6 +48,12 @@ public class GameManager : MonoBehaviour
         hour = "12";
         day = "7";
         amPM = "AM";
+
+        //initializes task texts
+        for (int i = 0; i <=14; i++)
+        {
+            tasksTexts[i].text = tasksStrings[i];
+        }
 
         //makes things update once a second instead of a thousand times
         InvokeRepeating("EverySecond", 1f, 1f);
@@ -154,8 +165,13 @@ public class GameManager : MonoBehaviour
         progress++;
         if (progress >= 100)
         {
-            Debug.Log("Task complete!");
+            //mark task complete
+            tasksToggles[tasksDone].isOn = true;
+            tasksTexts[tasksDone].text = "<s>" + tasksStrings[tasksDone] + "</s>";
+            tasksTexts[tasksDone].color = new Color32(165, 165, 165, 255);
             tasksDone++;
+            
+            //win condition
             if (tasksDone >= 15)
             {
                 Time.timeScale = 0;
