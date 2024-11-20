@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
+    public NewInputActions inputActions;
+
     float currentTime;
     public int intTime;
     
@@ -34,6 +37,8 @@ public class GameManager : MonoBehaviour
     public GameObject winScreen;
     public GameObject loseScreen;
 
+    List<bool> enabledPopups = new List<bool> { false,false,false,false };
+
     void Start()
     {
         //initializes values
@@ -57,6 +62,34 @@ public class GameManager : MonoBehaviour
 
         //makes things update once a second instead of a thousand times
         InvokeRepeating("EverySecond", 1f, 1f);
+
+        inputActions = new NewInputActions();
+        inputActions.Enable();
+        inputActions.Default.Dismiss1.performed += OnInput0;
+        inputActions.Default.Dismiss2.performed += OnInput1;
+        inputActions.Default.Dismiss3.performed += OnInput2;
+        inputActions.Default.Dismiss4.performed += OnInput3;
+    }
+
+    void OnInput0(InputAction.CallbackContext context)
+    {
+        OnInput(0);
+    }
+    void OnInput1(InputAction.CallbackContext context)
+    {
+        OnInput(1);
+    }
+    void OnInput2(InputAction.CallbackContext context)
+    {
+        OnInput(2);
+    }
+    void OnInput3(InputAction.CallbackContext context)
+    {
+        OnInput(3);
+    }
+    void OnInput(int index)
+    {
+        if (enabledPopups[index]) RemoveNotif(index);
     }
 
     void Update()
@@ -69,6 +102,12 @@ public class GameManager : MonoBehaviour
         {
             WorkProgress();
         }
+    }
+    public void RemoveNotif(int index)
+    {
+        notifs[index].SetActive(false);
+        enabledPopups[index] = false;
+        issuesActive--;
     }
 
     void EverySecond()
@@ -144,6 +183,7 @@ public class GameManager : MonoBehaviour
             if (!notifs[index].gameObject.activeSelf)
             {
                 notifs[index].SetActive(true);
+                enabledPopups[index] = true;
                 audioSource.clip = notifSounds[index];
                 audioSource.Play();
                 issuesActive++;
@@ -154,11 +194,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void RemoveNotif(int index)
-    {
-        notifs[index].SetActive(false);
-        issuesActive--;
-    }
 
     void WorkProgress()
     {
