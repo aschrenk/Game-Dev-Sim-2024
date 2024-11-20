@@ -37,6 +37,10 @@ public class GameManager : MonoBehaviour
     public GameObject winScreen;
     public GameObject loseScreen;
 
+    public Image workImage;
+    int currentWorkImage;
+    public Sprite[] workProgresses;
+
     List<bool> enabledPopups = new List<bool> { false,false,false,false };
 
     void Start()
@@ -48,6 +52,7 @@ public class GameManager : MonoBehaviour
         issuesActive = 0;
         progress = 0;
         tasksDone = 0;
+        currentWorkImage = 0;
 
         minutes = "00";
         hour = "12";
@@ -69,6 +74,7 @@ public class GameManager : MonoBehaviour
         inputActions.Default.Dismiss2.performed += OnInput1;
         inputActions.Default.Dismiss3.performed += OnInput2;
         inputActions.Default.Dismiss4.performed += OnInput3;
+
     }
 
     void OnInput0(InputAction.CallbackContext context)
@@ -213,9 +219,25 @@ public class GameManager : MonoBehaviour
                 winScreen.SetActive(true);
             }
 
+            currentWorkImage++;
+            if (currentWorkImage >= 16)
+            {
+                currentWorkImage = 0;
+            }
+            workImage.sprite = workProgresses[currentWorkImage];
             progress = 0;
+        }
+        else if (progress == 25 || progress == 50 || progress == 75)
+        {
+            currentWorkImage++;
+            workImage.sprite = workProgresses[currentWorkImage];
         }
         
         progDebug.text = progress.ToString();
+    }
+
+    public void GameQuit()
+    {
+        Application.Quit();
     }
 }
