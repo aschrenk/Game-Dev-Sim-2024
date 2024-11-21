@@ -24,7 +24,7 @@ public class changescene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if  (EventSystem.current.currentSelectedGameObject == null) EventSystem.current.SetSelectedGameObject(playButton);
     }
 
     public void startGame()
