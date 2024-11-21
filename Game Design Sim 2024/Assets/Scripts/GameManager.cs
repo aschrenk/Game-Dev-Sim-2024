@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
 
     List<bool> enabledPopups = new List<bool> { false,false,false,false };
 
+    public GameObject pauseMenu;
+
     void Start()
     {
         //initializes values
@@ -70,11 +72,40 @@ public class GameManager : MonoBehaviour
 
         inputActions = new NewInputActions();
         inputActions.Enable();
+        AddDismissCallbacks();
+
+        inputActions.Default.Pause.performed += OnPause;
+
+    }
+
+    void AddDismissCallbacks()
+    {
         inputActions.Default.Dismiss1.performed += OnInput0;
         inputActions.Default.Dismiss2.performed += OnInput1;
         inputActions.Default.Dismiss3.performed += OnInput2;
         inputActions.Default.Dismiss4.performed += OnInput3;
+    }
 
+
+    bool isPaused = false;
+    void OnPause(InputAction.CallbackContext context)
+    {
+        
+        if (Time.timeScale > 0)
+        {
+            Time.timeScale = 0f;
+            isPaused = true;
+            pauseMenu.SetActive(true);
+            Debug.Log("Paused!");
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            isPaused= false;
+            pauseMenu.SetActive(false);
+            Debug.Log("Unpaused!");
+        }
+        
     }
 
     void OnInput0(InputAction.CallbackContext context)
@@ -95,7 +126,7 @@ public class GameManager : MonoBehaviour
     }
     void OnInput(int index)
     {
-        if (enabledPopups[index]) RemoveNotif(index);
+        if (enabledPopups[index] && !isPaused) RemoveNotif(index);
     }
 
     void Update()
@@ -104,7 +135,7 @@ public class GameManager : MonoBehaviour
         currentTime += Time.deltaTime;
         intTime = Mathf.RoundToInt(currentTime);
 
-        if (Input.anyKeyDown && issuesActive == 0)
+        if (Input.anyKeyDown && issuesActive == 0 && !isPaused)
         {
             WorkProgress();
         }
