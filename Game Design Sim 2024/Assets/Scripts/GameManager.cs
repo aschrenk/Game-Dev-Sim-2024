@@ -70,20 +70,35 @@ public class GameManager : MonoBehaviour
         //makes things update once a second instead of a thousand times
         InvokeRepeating("EverySecond", 1f, 1f);
 
-        inputActions = new NewInputActions();
-        inputActions.Enable();
+        
         AddDismissCallbacks();
 
         inputActions.Default.Pause.performed += OnPause;
+        
 
     }
 
     void AddDismissCallbacks()
     {
+        inputActions = new NewInputActions();
+        inputActions.Default.Enable();
         inputActions.Default.Dismiss1.performed += OnInput0;
         inputActions.Default.Dismiss2.performed += OnInput1;
         inputActions.Default.Dismiss3.performed += OnInput2;
         inputActions.Default.Dismiss4.performed += OnInput3;
+    }
+    void RemoveDismissCallbacks()
+    {
+        inputActions.Default.Disable();
+        inputActions.Default.Dismiss1.performed -= OnInput0;
+        inputActions.Default.Dismiss2.performed -= OnInput1;
+        inputActions.Default.Dismiss3.performed -= OnInput2;
+        inputActions.Default.Dismiss4.performed -= OnInput3;
+    }
+
+    private void OnDestroy()
+    {
+        RemoveDismissCallbacks();
     }
 
 
@@ -91,8 +106,11 @@ public class GameManager : MonoBehaviour
     void OnPause(InputAction.CallbackContext context)
     {
         
+
         if (Time.timeScale > 0)
         {
+            if (progress > 0) progress--;
+
             Time.timeScale = 0f;
             isPaused = true;
             pauseMenu.SetActive(true);
@@ -100,12 +118,17 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 1f;
-            isPaused= false;
-            pauseMenu.SetActive(false);
-            Debug.Log("Unpaused!");
+            Unpause();
         }
         
+    }
+
+    public void Unpause()
+    {
+        Time.timeScale = 1f;
+        isPaused = false;
+        pauseMenu.SetActive(false);
+        Debug.Log("Unpaused!");
     }
 
     void OnInput0(InputAction.CallbackContext context)
