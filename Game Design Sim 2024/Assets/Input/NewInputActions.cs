@@ -62,6 +62,15 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""9cc366d5-a935-471b-97d1-46b2cf1f4995"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -150,6 +159,39 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Dismiss4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""30f68b9d-f720-42c9-803d-7e089e395cce"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""faf53d5b-91c9-4ed5-bf40-16f126bce18b"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""401225c3-a0f9-407f-a6c7-44c7ab199144"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -680,6 +722,7 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
         m_Default_Dismiss2 = m_Default.FindAction("Dismiss2", throwIfNotFound: true);
         m_Default_Dismiss3 = m_Default.FindAction("Dismiss3", throwIfNotFound: true);
         m_Default_Dismiss4 = m_Default.FindAction("Dismiss4", throwIfNotFound: true);
+        m_Default_Pause = m_Default.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -757,6 +800,7 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Default_Dismiss2;
     private readonly InputAction m_Default_Dismiss3;
     private readonly InputAction m_Default_Dismiss4;
+    private readonly InputAction m_Default_Pause;
     public struct DefaultActions
     {
         private @NewInputActions m_Wrapper;
@@ -765,6 +809,7 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
         public InputAction @Dismiss2 => m_Wrapper.m_Default_Dismiss2;
         public InputAction @Dismiss3 => m_Wrapper.m_Default_Dismiss3;
         public InputAction @Dismiss4 => m_Wrapper.m_Default_Dismiss4;
+        public InputAction @Pause => m_Wrapper.m_Default_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -786,6 +831,9 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
             @Dismiss4.started += instance.OnDismiss4;
             @Dismiss4.performed += instance.OnDismiss4;
             @Dismiss4.canceled += instance.OnDismiss4;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IDefaultActions instance)
@@ -802,6 +850,9 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
             @Dismiss4.started -= instance.OnDismiss4;
             @Dismiss4.performed -= instance.OnDismiss4;
             @Dismiss4.canceled -= instance.OnDismiss4;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IDefaultActions instance)
@@ -943,6 +994,7 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
         void OnDismiss2(InputAction.CallbackContext context);
         void OnDismiss3(InputAction.CallbackContext context);
         void OnDismiss4(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
