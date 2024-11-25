@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public NewInputActions inputActions;
 
+    public GameObject pauseMenu;
+
     float currentTime;
     public int intTime;
     
@@ -41,9 +43,19 @@ public class GameManager : MonoBehaviour
     int currentWorkImage;
     public Sprite[] workProgresses;
 
+    public Image steamImage;
+    public Image canvasImage;
+    public Image discordImage;
+    public Image popupImage;
+    public Sprite[] steamNotifs;
+    public Sprite[] canvasNotifs;
+    public Sprite[] discordNotifs;
+    public Sprite[] popupNotifs;
+    int[] notifIndexes;
+    
     List<bool> enabledPopups = new List<bool> { false,false,false,false };
 
-    public GameObject pauseMenu;
+
 
     void Start()
     {
@@ -55,6 +67,7 @@ public class GameManager : MonoBehaviour
         progress = 0;
         tasksDone = 0;
         currentWorkImage = 0;
+        notifIndexes = new int[] {0, 0, 0, 0};
 
         minutes = "00";
         hour = "12";
@@ -236,14 +249,53 @@ public class GameManager : MonoBehaviour
     {
         issueChance += intTime - lastIssue;
 
+        //random chance to have a new pop up, takes at least 2s but at most 6s
         int happen = issueChance + Random.Range(1, 15);
         if (happen >= 20)
         {
+            //picks a random notif type and checks if already active
             int index = Random.Range(0, 4);
             if (!notifs[index].gameObject.activeSelf)
             {
+                //grabs the images for the correct notification type
+                Image tempImage;
+                Sprite[] tempSprites;
+                switch (index)
+                {
+                    case 0:
+                        tempImage = steamImage;
+                        tempSprites = steamNotifs;
+                        break;
+                    case 1:
+                        tempImage = canvasImage;
+                        tempSprites = canvasNotifs;
+                        break;
+                    case 2:
+                        tempImage = discordImage;
+                        tempSprites = discordNotifs;
+                        break;
+                    case 3:
+                        tempImage = popupImage;
+                        tempSprites = popupNotifs;
+                        break;
+                    default:
+                        tempImage = null;
+                        tempSprites = new Sprite[0];
+                        break;
+
+                }
+
+                //sets the new image, increments the array, and activates the notif
+                if (notifIndexes[index] >= tempSprites.Length)
+                {
+                    notifIndexes[index] = 0;
+                }
+                Debug.Log("Index = " + index + "Notif Index = " + notifIndexes[index]);
+                tempImage.sprite = tempSprites[notifIndexes[index]];
+                notifIndexes[index]++;
                 notifs[index].SetActive(true);
                 enabledPopups[index] = true;
+                
                 audioSource.clip = notifSounds[index];
                 audioSource.Play();
                 issuesActive++;
@@ -253,7 +305,6 @@ public class GameManager : MonoBehaviour
             issueChance = 0;
         }
     }
-
 
     void WorkProgress()
     {
