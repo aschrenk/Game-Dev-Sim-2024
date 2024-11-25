@@ -777,6 +777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d5c77bc8673cb4da36fdf1d230c251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 1417258629}
   intTime: 0
   progDebug: {fileID: 1697482351}
   tasksToggles:
@@ -859,7 +860,39 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4f08077825a75c3489702145b6dbef08, type: 3}
   - {fileID: 21300000, guid: ac549c0f292e3c043b0d3e366329330a, type: 3}
   - {fileID: 21300000, guid: 30327a0925c5fef458594816162fa4a8, type: 3}
-  pauseMenu: {fileID: 1417258629}
+  steamImage: {fileID: 1441590761}
+  canvasImage: {fileID: 64110919}
+  discordImage: {fileID: 1809583544}
+  popupImage: {fileID: 347097688}
+  steamNotifs:
+  - {fileID: 21300000, guid: d9decb6144ea8d441bd0c1acb553c1ef, type: 3}
+  - {fileID: 21300000, guid: 189d71c935ffb7d4e86252bf725ded74, type: 3}
+  canvasNotifs:
+  - {fileID: 21300000, guid: e8cacfd417e61a14e9d5cde4ba1b11e4, type: 3}
+  - {fileID: 21300000, guid: 3217458604a045648a40150177c8f725, type: 3}
+  discordNotifs:
+  - {fileID: 21300000, guid: ea52ea993fe2d4941aa06e65efce46eb, type: 3}
+  - {fileID: 21300000, guid: 7bc6842ef5ae26a4194a3794d53f807d, type: 3}
+  - {fileID: 21300000, guid: 9773ba1d698ba9042a3419d2df429021, type: 3}
+  - {fileID: 21300000, guid: 3e427dfb673681f46b0b5ed485a0e591, type: 3}
+  - {fileID: 21300000, guid: a7947a847513f7145b77ff22a8df7674, type: 3}
+  - {fileID: 21300000, guid: 9773ba1d698ba9042a3419d2df429021, type: 3}
+  - {fileID: 21300000, guid: 4fcff24d8c042014481bc2553616209f, type: 3}
+  - {fileID: 21300000, guid: 6175c416ad3e6944ea652a8b177bfee8, type: 3}
+  - {fileID: 21300000, guid: 91ea0eca9f8164847996312049e5bc44, type: 3}
+  - {fileID: 21300000, guid: c6fd600850290d84c949ac339e870d71, type: 3}
+  - {fileID: 21300000, guid: 10c47af7448236b4092010a53b0b81c6, type: 3}
+  - {fileID: 21300000, guid: ba535848e5f2b144383297399fef6f80, type: 3}
+  - {fileID: 21300000, guid: 5eb9b174de7f09248863e33fe45ad044, type: 3}
+  - {fileID: 21300000, guid: f559c180aec56204cb41894f3efe9cab, type: 3}
+  - {fileID: 21300000, guid: 503903c38038c4b42b659351b080f5cc, type: 3}
+  - {fileID: 21300000, guid: 3e809a181dda74d4fafa1e7406b32f49, type: 3}
+  - {fileID: 21300000, guid: 592c4c3627c9cbe49af7aae1cf994d3f, type: 3}
+  - {fileID: 21300000, guid: 9100d48dd13fbac4a8c737c97abe36f3, type: 3}
+  popupNotifs:
+  - {fileID: 21300000, guid: 9bd15a68d3d6c3d4bac707603979cb76, type: 3}
+  - {fileID: 21300000, guid: 8eb27deba3217654db15bbe58fa4a844, type: 3}
+  - {fileID: 21300000, guid: dda8cdc8edb35ec46a1605c95f8064a0, type: 3}
 --- !u!4 &156096657
 Transform:
   m_ObjectHideFlags: 0
@@ -1382,15 +1415,15 @@ RectTransform:
   m_GameObject: {fileID: 303677192}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.5122654, y: 2.173459, z: 2.6487482}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 37267154}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -463.61804, y: -22.029297}
-  m_SizeDelta: {x: 250.87, y: 52.22}
+  m_AnchoredPosition: {x: -300.27, y: -30.46}
+  m_SizeDelta: {x: 577.57, y: 173.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &303677194
 MonoBehaviour:
@@ -1439,8 +1472,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.38
-  m_fontSizeBase: 37.38
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -4935,7 +4968,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8b49de3d46bc3e64a89b4e76526fb196, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ea52ea993fe2d4941aa06e65efce46eb, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
