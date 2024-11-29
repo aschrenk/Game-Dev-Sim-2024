@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -52,6 +53,8 @@ public class GameManager : MonoBehaviour
     public Sprite[] discordNotifs;
     public Sprite[] popupNotifs;
     int[] notifIndexes;
+
+    public Image progressFill;
     
     List<bool> enabledPopups = new List<bool> { false,false,false,false };
 
@@ -309,12 +312,15 @@ public class GameManager : MonoBehaviour
     void WorkProgress()
     {
         progress++;
+        float progFloat = progress / 100f;
+        progressFill.fillAmount = progFloat;
+
         if (progress >= 100)
         {
             //mark task complete
             tasksToggles[tasksDone].isOn = true;
             tasksTexts[tasksDone].text = "<s>" + tasksStrings[tasksDone] + "</s>";
-            tasksTexts[tasksDone].color = new Color32(165, 165, 165, 255);
+            tasksTexts[tasksDone].color = new Color32(105, 105, 105, 255);
             tasksDone++;
             
             //win condition
@@ -325,12 +331,13 @@ public class GameManager : MonoBehaviour
             }
 
             currentWorkImage++;
-            if (currentWorkImage >= 16)
+            if (currentWorkImage >= 60)
             {
                 currentWorkImage = 0;
             }
             workImage.sprite = workProgresses[currentWorkImage];
             progress = 0;
+            progressFill.fillAmount = 0;
         }
         else if (progress == 25 || progress == 50 || progress == 75)
         {
@@ -344,5 +351,15 @@ public class GameManager : MonoBehaviour
     public void GameQuit()
     {
         Application.Quit();
+    }
+
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
