@@ -10,8 +10,8 @@ public class PauseMenu : MonoBehaviour
     public GameManager manager;
     private void OnEnable()
     {
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(resumeButton);
+        //EventSystem.current.SetSelectedGameObject(null);
+        //EventSystem.current.SetSelectedGameObject(resumeButton);
     }
 
     public void OnResume()

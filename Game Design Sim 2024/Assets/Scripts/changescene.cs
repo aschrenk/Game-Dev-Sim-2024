@@ -17,14 +17,14 @@ public class changescene : MonoBehaviour
 
     private void OnEnable()
     {
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(playButton);
+        //EventSystem.current.SetSelectedGameObject(null);
+        //EventSystem.current.SetSelectedGameObject(playButton);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if  (EventSystem.current.currentSelectedGameObject == null) EventSystem.current.SetSelectedGameObject(playButton);
+        //if  (EventSystem.current.currentSelectedGameObject == null) EventSystem.current.SetSelectedGameObject(playButton);
     }
 
     public void startGame()
