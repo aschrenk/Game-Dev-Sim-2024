@@ -88,7 +88,7 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""cf1a2dd0-37b7-4b71-ba5c-f786285a9135"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -110,7 +110,7 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""39540514-0066-4a71-b259-3023fdb129a4"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -132,7 +132,7 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6ce81ca9-7a3e-4550-ab70-8eddd9121fab"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -154,7 +154,7 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""04e8bd44-35eb-4812-886c-b8b1eecad2ad"",
-                    ""path"": ""<XInputController>/rightShoulder"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
