@@ -355,11 +355,13 @@ public class GameManager : MonoBehaviour
 
     public void PlayAgain()
     {
+        Unpause();
         SceneManager.LoadScene("SampleScene");
     }
 
     public void MainMenu()
     {
+        Unpause();
         SceneManager.LoadScene("MainMenu");
     }
 }
