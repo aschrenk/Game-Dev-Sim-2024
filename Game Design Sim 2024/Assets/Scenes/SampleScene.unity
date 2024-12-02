@@ -764,7 +764,7 @@ MonoBehaviour:
   - Draw CG W
   - Draw bedroom
   - Draw Dr Frankie
-  - Write code
+  - Make pause menu
   - Draw alt outfit F
   - Draw CG F
   - Implement assets
@@ -812,10 +812,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: bf848766e588855428f273f4056229ef, type: 3}
   - {fileID: 21300000, guid: c15b0df7c7acaa34998fb3efadb99dff, type: 3}
   - {fileID: 21300000, guid: b79791f032d3140448e5bae6f1ce6dcb, type: 3}
-  - {fileID: 21300000, guid: 658ff67fdc20389479dae14f0990da30, type: 3}
-  - {fileID: 21300000, guid: 15d907a920e789d408af3bc9ae11ca30, type: 3}
-  - {fileID: 21300000, guid: 658ff67fdc20389479dae14f0990da30, type: 3}
-  - {fileID: 21300000, guid: 15d907a920e789d408af3bc9ae11ca30, type: 3}
+  - {fileID: 21300000, guid: 741bf87dce28c2744a582d9dd168457a, type: 3}
+  - {fileID: 21300000, guid: 4ae06d5b0934cc145955c42eb9e00e91, type: 3}
+  - {fileID: 21300000, guid: 5a67cfbea45d60345acfa44b9bee3c12, type: 3}
+  - {fileID: 21300000, guid: 9349e7d57b4c23f40b4c95a3a8103693, type: 3}
   - {fileID: 21300000, guid: a65a4086306858843ac26bc2163a37f9, type: 3}
   - {fileID: 21300000, guid: fb8ab06a2515c0242be9101c8d875fea, type: 3}
   - {fileID: 21300000, guid: 5c455e871a96a5e4faf2153f9260291f, type: 3}
@@ -828,10 +828,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cbddd06d2e1798d4b9e13474aa18eea0, type: 3}
   - {fileID: 21300000, guid: 65742e64de67ec64e97e9ecd80df4dfe, type: 3}
   - {fileID: 21300000, guid: 20465cb466654164ab0dba81e2928c75, type: 3}
-  - {fileID: 21300000, guid: 658ff67fdc20389479dae14f0990da30, type: 3}
-  - {fileID: 21300000, guid: 15d907a920e789d408af3bc9ae11ca30, type: 3}
-  - {fileID: 21300000, guid: 658ff67fdc20389479dae14f0990da30, type: 3}
-  - {fileID: 21300000, guid: 15d907a920e789d408af3bc9ae11ca30, type: 3}
+  - {fileID: 21300000, guid: 5125e5b7c632e184fba725fbad782785, type: 3}
+  - {fileID: 21300000, guid: 1b7002e0304e50240b303e1abf63d5bd, type: 3}
+  - {fileID: 21300000, guid: 460287368418cbc48808dbd66ca0bdba, type: 3}
+  - {fileID: 21300000, guid: 1ca21cf8bce1f8b4eb9c3e199832ab82, type: 3}
   - {fileID: 21300000, guid: 400d59475a348e24a87053778d2c45a2, type: 3}
   - {fileID: 21300000, guid: d8553456241c46e4897ede1bc6b019a7, type: 3}
   - {fileID: 21300000, guid: 6fb3e0bfebe345b43927797a67641ff3, type: 3}
@@ -2921,7 +2921,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 32, y: -60.500183}
+  m_AnchoredPosition: {x: 32, y: -60.500244}
   m_SizeDelta: {x: 0, y: -73}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &954121864
@@ -3672,7 +3672,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 55, y: -12.999939}
+  m_AnchoredPosition: {x: 55, y: -13}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1175132486
@@ -6957,6 +6957,134 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2062035482}
   m_CullTransparentMesh: 1
+--- !u!1 &2063773021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2063773023}
+  - component: {fileID: 2063773022}
+  m_Layer: 0
+  m_Name: Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &2063773022
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063773021}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 94d1d0b90e44f2b42b7143774fb42816, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &2063773023
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063773021}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 124.654594, y: -64.15408, z: 182.75111}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8652863058533205145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7077,3 +7205,4 @@ SceneRoots:
   - {fileID: 707243618}
   - {fileID: 387255853}
   - {fileID: 156096657}
+  - {fileID: 2063773023}
